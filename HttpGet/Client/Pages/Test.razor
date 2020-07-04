@@ -1,0 +1,22 @@
+﻿@page "/httptest"
+@inject HttpClient HC
+
+<h3>Test</h3>
+@foreach(string s in NekiString)
+{
+	@s
+}
+
+
+@code 
+{
+	public List<string> NekiString = new List<string>();
+
+	protected override async Task OnInitializedAsync()
+	{
+
+
+		NekiString = await HC.GetFromJsonAsync<List<string>>("TestGet");
+	}
+
+}
